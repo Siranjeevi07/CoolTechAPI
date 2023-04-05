@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoolTech.Utilities.Models;
+using System.Data;
 
 namespace BusinessLogicLayer.Sales
 {
     public interface ISalesBL
     {
-        string CheckSalesStatus();
+       Task<List<CheckSalesOrderStatModel>> CheckSalesOrderStatus(string operation);
     }
 }

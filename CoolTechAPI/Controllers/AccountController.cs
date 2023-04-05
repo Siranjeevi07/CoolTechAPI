@@ -22,14 +22,14 @@ namespace CoolTechAPI.Controllers
         /// TO login
         /// </summary>
         /// <param name="userName"></param>
-        /// <param name="password"></param>
+        /// <param name="fcmToken"></param>
         /// <param name="IMEI"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login(string userName, string password, string IMEI)
+        public async Task<IActionResult> Login(string userName, string fcmToken, string IMEI)
         {
-           return await _accountService.Login(userName, password, IMEI);
+           return await _accountService.Login(userName, fcmToken, IMEI);
         }
 
         /// <summary>

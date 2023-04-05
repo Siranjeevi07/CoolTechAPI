@@ -1,10 +1,12 @@
-﻿namespace CoolTechAPI.Services
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace CoolTechAPI.Services
 {
     /// <summary>
     /// Used to store and retrive the records
     /// </summary>
     public interface ISalesService
     {
-        string CheckSalesStatus();
+        Task<IActionResult> CheckSalesOrderStatus(string operationCode);
     }
 }

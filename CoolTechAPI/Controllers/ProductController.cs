@@ -14,15 +14,15 @@ namespace CoolTechAPI.Controllers
             _hubContext = hubContext;
         }
 
-        [HttpPost]
-        [Route("getproducts")]
-        public string Get()
-        { 
-          List<string> offers = new List<string>();
-            offers.Add("Test Products 1");
-            offers.Add("Test Products 2");
-            _hubContext.Clients.All.SendOffersToUser(offers);
-            return "Products send successfully";
-        }
+        //[HttpPost]
+        //[Route("getproducts")]
+        //public string Get()
+        //{ 
+        //  List<string> offers = new List<string>();
+        //    offers.Add("Test Products 1");
+        //    offers.Add("Test Products 2");
+        //    _hubContext.Clients.All.SendOffersToUser(offers);
+        //    return "Products send successfully";
+        //}
     }
 }

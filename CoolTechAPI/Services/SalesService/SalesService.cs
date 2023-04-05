@@ -1,10 +1,14 @@
 ﻿using BusinessLogicLayer.Sales;
+using CoolTech.Utilities.Models;
+using CoolTechAPI.Common;
 using CoolTechAPI.Hub;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using System.Data;
 
 namespace CoolTechAPI.Services
 {
-   
+
     /// <summary>
     /// Used to retrive and store the records 
     /// </summary>
@@ -18,9 +22,19 @@ namespace CoolTechAPI.Services
             _salesBL = salesBL;
         }
 
-        public string CheckSalesStatus()
+        public async Task<IActionResult> CheckSalesOrderStatus(string operationCode)
         {
-           return _salesBL.CheckSalesStatus();
+            List<CheckSalesOrderStatModel> checkSales = new List<CheckSalesOrderStatModel>();
+            try
+            {
+                checkSales = await _salesBL.CheckSalesOrderStatus(operationCode);
+            }
+            catch (Exception ex)
+            {
+                ApiResponse<string>.BadRequestObjectResult("Error while processing the CheckSalesOrder" +ex.Message );
+
+            }
+            return ApiResponse<List<CheckSalesOrderStatModel>>.OkObjectResult(checkSales);
         }
 
 

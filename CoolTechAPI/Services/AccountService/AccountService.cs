@@ -29,16 +29,11 @@ namespace CoolTechAPI.Services
         /// <param name="fcmToken"></param>
         /// <param name="IMEI"></param>
         /// <returns></returns>
-        public async Task<IActionResult> Login(string username, string fcmToken, string IMEI)
+        public async Task<IActionResult> Login(string userName, string fcMToken, string imei)
         {
-            var values = new Dictionary<string, string>
-                     {
-                         { "UserName", username },
-                         { "fcmToken", fcmToken },
-                         {"IMEI",IMEI }
-                     };
 
-            var data = new { UserName = "YAS", fcmToken = "sample string 2", IMEI ="3" };
+            //var data = new { UserName = "YAS", fcmToken = "sample string 2", IMEI ="3" };
+            var data = new { UserName = userName, fcmToken = fcMToken, IMEI = imei };
             if (string.IsNullOrEmpty(loginURL)) {
                 return ApiResponse<string>.BadRequestObjectResult("LoginURL is empty, add the correct URL in the app config");
             }

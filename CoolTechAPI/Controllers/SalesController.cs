@@ -26,15 +26,15 @@ namespace CoolTechAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("checkSales")]
-        public async Task<IActionResult> CheckSalesStatus()
+        [Route("checksalesorderstatus")]
+        public async Task<IActionResult> CheckSalesOrderStatus(string operationCode)
         {
-            _salesService.CheckSalesStatus();
+           return await _salesService.CheckSalesOrderStatus(operationCode);
             //List<string> offers = new List<string>();
             //offers.Add("Test Products 1");
             //offers.Add("Test Products 2");
             //_hubContext.Clients.All.CheckSalesStatus(offers);
-            return null;
+          //  return null;
         }
         
     }

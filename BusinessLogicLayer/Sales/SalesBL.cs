@@ -1,10 +1,7 @@
-﻿using DataAccessLayer.Repository;
-using System;
-using System.Collections.Generic;
+﻿using CoolTech.Utilities;
+using CoolTech.Utilities.Models;
+using DataAccessLayer.Repository;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Sales
 {
@@ -12,11 +9,13 @@ namespace BusinessLogicLayer.Sales
     {
         public SalesBL() { }
 
-        public string CheckSalesStatus()
+        public async Task<List<CheckSalesOrderStatModel>> CheckSalesOrderStatus(string operationCode)
         {
             SalesRepo salesRepo = new SalesRepo();
-           DataSet ds = salesRepo.CheckSalesStatus();
-            return string.Empty;
+            DataTable dt = await salesRepo.CheckSalesOrderStatus(operationCode);
+
+            List<CheckSalesOrderStatModel> target = dt.ToList<CheckSalesOrderStatModel>();
+            return target;
         }
     }
 }
