@@ -28,9 +28,9 @@ namespace CoolTechAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("checksalesorderstatus")]
-        public async Task<IActionResult> CheckSalesOrderStatus(string operationCode)
+        public async Task<IActionResult> CheckSalesOrderStatus(string operationCode, string branch)
         {
-           return await _salesService.CheckSalesOrderStatus(operationCode);
+           return await _salesService.CheckSalesOrderStatus(operationCode, branch);
             //List<string> offers = new List<string>();
             //offers.Add("Test Products 1");
             //offers.Add("Test Products 2");
@@ -40,9 +40,9 @@ namespace CoolTechAPI.Controllers
 
         [HttpGet]
         [Route("getwmsdistribution")]
-        public async Task<IActionResult> GetWmsDistribution(string operationCode,string docType, string docNo, string wmsStatus)
+        public async Task<IActionResult> GetWmsDistribution(string operationCode,string docType, string docNo, string wmsStatus, string branch)
         {
-            return await _salesService.GetWmsDistribution(operationCode,docType, docNo,wmsStatus);
+            return await _salesService.GetWmsDistribution(operationCode,docType, docNo,wmsStatus, branch);
         }
 
         [HttpPost]

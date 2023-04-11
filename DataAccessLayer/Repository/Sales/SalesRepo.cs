@@ -16,22 +16,24 @@ namespace DataAccessLayer.Repository
         /// </summary>
         /// <param name="operationCode"></param>
         /// <returns></returns>
-        public async Task<DataTable> CheckSalesOrderStatus(string operationCode)
+        public async Task<DataTable> CheckSalesOrderStatus(string operationCode, string branch)
         {
             DBHelper dBHelper = new DBHelper();
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add("@op".CreateSQLParameter(operationCode, ParameterDirection.Input));
+            sqlParameters.Add("@BRANCH".CreateSQLParameter(branch, ParameterDirection.Input));
             return dBHelper.ExecDT(CommandType.StoredProcedure, "[dbo].[SP_APP_WMS_SO_STATUS_DISPLAY]", sqlParameters);
         }
 
-        public async Task<DataTable> GetWmsDistribution(string operationCode, string docType, string docNo, string wmsStatus)
+        public async Task<DataTable> GetWmsDistribution(string operationCode, string docType, string docNo, string wmsStatus, string branch)
         {
             DBHelper dBHelper = new DBHelper();
             List<SqlParameter> sqlParameters = new List<SqlParameter>();
             sqlParameters.Add("@OP".CreateSQLParameter(operationCode, ParameterDirection.Input));
-            //sqlParameters.Add("@DOC_TYPE".CreateSQLParameter(docType, ParameterDirection.Input));
-            //sqlParameters.Add("@DOC_NO".CreateSQLParameter(docNo, ParameterDirection.Input));
-            //sqlParameters.Add("@WMS_STATUS".CreateSQLParameter(wmsStatus, ParameterDirection.Input));
+            sqlParameters.Add("@DOC_TYPE".CreateSQLParameter(docType, ParameterDirection.Input));
+            sqlParameters.Add("@DOC_NO".CreateSQLParameter(docNo, ParameterDirection.Input));
+            sqlParameters.Add("@WMS_STATUS".CreateSQLParameter(wmsStatus, ParameterDirection.Input));
+            sqlParameters.Add("@BRANCH".CreateSQLParameter(branch, ParameterDirection.Input));
             return dBHelper.ExecDT(CommandType.StoredProcedure, "[dbo].[SP_APP_WMS_SO_DISTRIBUTION]", sqlParameters);
 
         }

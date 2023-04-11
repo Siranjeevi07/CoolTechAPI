@@ -23,12 +23,12 @@ namespace CoolTechAPI.Services
             _salesBL = salesBL;
         }
 
-        public async Task<IActionResult> CheckSalesOrderStatus(string operationCode)
+        public async Task<IActionResult> CheckSalesOrderStatus(string operationCode, string branch)
         {
             List<CheckSalesOrderStatModel> checkSales = new List<CheckSalesOrderStatModel>();
             try
             {
-                checkSales = await _salesBL.CheckSalesOrderStatus(operationCode);
+                checkSales = await _salesBL.CheckSalesOrderStatus(operationCode, branch);
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace CoolTechAPI.Services
             return ApiResponse<List<CheckSalesOrderStatModel>>.OkObjectResult(checkSales);
         }
 
-        public async Task<IActionResult> GetWmsDistribution(string operationCode, string docType, string docNo, string wmsStatus)
+        public async Task<IActionResult> GetWmsDistribution(string operationCode, string docType, string docNo, string wmsStatus, string branch)
         {
 
             try
@@ -46,13 +46,13 @@ namespace CoolTechAPI.Services
                 if (operationCode == "N")
                 {
                     List<NDistribution> nDistributions = new List<NDistribution>();
-                    nDistributions = await _salesBL.GetNDistribution(operationCode, docType, docNo, wmsStatus);
+                    nDistributions = await _salesBL.GetNDistribution(operationCode, docType, docNo, wmsStatus, branch);
                     return ApiResponse<List<NDistribution>>.OkObjectResult(nDistributions);
                 }
                 else if (operationCode == "SOD")
                 {
                     List<SODDistribution> sODDistributions = new List<SODDistribution>();
-                    sODDistributions = await _salesBL.GetSODDistribution(operationCode, docType, docNo, wmsStatus);
+                    sODDistributions = await _salesBL.GetSODDistribution(operationCode, docType, docNo, wmsStatus, branch);
                     return ApiResponse<List<SODDistribution>>.OkObjectResult(sODDistributions);
                 }
 
@@ -60,13 +60,13 @@ namespace CoolTechAPI.Services
                 else if (operationCode == "V")
                 {
                     List<VDistribution> vDistributions = new List<VDistribution>();
-                    vDistributions = await _salesBL.GetVDistribution(operationCode, docType, docNo, wmsStatus);
+                    vDistributions = await _salesBL.GetVDistribution(operationCode, docType, docNo, wmsStatus, branch);
                     return ApiResponse<List<VDistribution>>.OkObjectResult(vDistributions);
                 }
                 else if (operationCode == "V1")
                 {
                     List<V1Distribution> v1Distributions = new List<V1Distribution>();
-                    v1Distributions = await _salesBL.GetV1Distribution(operationCode, docType, docNo, wmsStatus);
+                    v1Distributions = await _salesBL.GetV1Distribution(operationCode, docType, docNo, wmsStatus, branch);
                     return ApiResponse<List<V1Distribution>>.OkObjectResult(v1Distributions);
                 }
             }
