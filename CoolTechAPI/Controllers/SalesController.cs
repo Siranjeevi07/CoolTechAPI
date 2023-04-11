@@ -1,4 +1,5 @@
-﻿using CoolTechAPI.Hub;
+﻿using CoolTech.Utilities;
+using CoolTechAPI.Hub;
 using CoolTechAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.SignalR;
 namespace CoolTechAPI.Controllers
 {
     [ApiController]
-    [Route("api/controller")]
+    [Route("api/[controller]")]
     public class SalesController : ControllerBase
     {
         public readonly ISalesService _salesService;
@@ -36,6 +37,21 @@ namespace CoolTechAPI.Controllers
             //_hubContext.Clients.All.CheckSalesStatus(offers);
           //  return null;
         }
-        
+
+        [HttpGet]
+        [Route("getwmsdistribution")]
+        public async Task<IActionResult> GetWmsDistribution(string operationCode,string docType, string docNo, string wmsStatus)
+        {
+            return await _salesService.GetWmsDistribution(operationCode,docType, docNo,wmsStatus);
+        }
+
+        [HttpPost]
+        [Route("postwmsdistribution")]
+        public async Task<IActionResult> PostWmsDistribution([FromBody] UIDistributionModel distributionModel)
+        {
+            return null;
+        }
+       
+
     }
 }
